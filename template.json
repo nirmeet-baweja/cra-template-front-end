@@ -1,0 +1,19 @@
+{
+  "package": {
+    "dependencies": {
+      "web-vitals": "^2.1.0",
+      "@codeyourfuture/eslint-config-standard": "^3.0.3",
+      "cross-env": "^7.0.3",
+      "stop-runaway-react-effects": "^2.0.0"
+    },
+    "eslintConfig": {
+      "extends": ["react-app", "@codeyourfuture/eslint-config-standard/lax"],
+      "ignorePatterns": ["build/", "node_modules/"]
+    },
+    "scripts": {
+      "lint": "eslint .",
+      "start": "cross-env ESLINT_NO_DEV_ERRORS=true react-scripts start",
+      "test": "echo \"Error: no test specified\" && exit 1"
+    }
+  }
+}

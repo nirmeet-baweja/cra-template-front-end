@@ -1,0 +1,66 @@
+{
+  "name": "cra-template-front-end",
+  "version": "1.0.0",
+  "description": "Create react app template",
+  "main": "index.js",
+  "scripts": {
+    "build": "node generateTemplate.js && npm run lint:template -- --fix",
+    "lint": "eslint .",
+    "lint:template": "eslint template/",
+    "ship": "npm run lint && npm run build && npm run test",
+    "test-app": "npm --prefix ./test-app run",
+    "test-app:build": "npm run test-app -- build",
+    "test-app:lint": "npm run test-app -- lint",
+    "test-app:start": "cross-env BROWSER=none npm run test-app -- start",
+    "test-app:verify": "concurrently -k -s first -n \"app,up?\" \"npm run test-app:start\" \"wait-on -t 30000 http-get://localhost:3000\"",
+    "pretest": "rimraf test-app/ && cross-env npm_config_yes=true npx create-react-app@latest test-app --use-npm --template file:.",
+    "test": "npm run test-app:build && npm run test-app:lint && npm run test-app:verify"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nirmeet-baweja/cra-template-front-end.git"
+  },
+  "keywords": [
+    "react",
+    "template",
+    "create-react-app"
+  ],
+  "author": "nirmeet-baweja",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/nirmeet-baweja/cra-template-front-end/issues"
+  },
+  "homepage": "https://github.com/nirmeet-baweja/cra-template-front-end#readme",
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "@codeyourfuture/eslint-config-standard/lax"
+    ],
+    "ignorePatterns": [
+      "test-app/",
+      "node_modules/"
+    ],
+    "settings": {
+      "react": {
+        "version": "detect"
+      }
+    }
+  },
+  "devDependencies": {
+    "@codeyourfuture/eslint-config-standard": "^3.0.3",
+    "concurrently": "^7.6.0",
+    "cra-template": "1.2.0",
+    "cross-env": "^7.0.3",
+    "eslint": "^8.31.0",
+    "eslint-config-react-app": "^7.0.1",
+    "eslint-plugin-flowtype": "^8.0.3",
+    "eslint-plugin-import": "^2.26.0",
+    "eslint-plugin-jsx-a11y": "^6.7.0",
+    "eslint-plugin-react": "^7.32.0",
+    "eslint-plugin-react-hooks": "^4.6.0",
+    "fs-extra": "^11.1.0",
+    "lodash.merge": "^4.6.2",
+    "rimraf": "^3.0.2",
+    "wait-on": "^7.0.1"
+  }
+}
